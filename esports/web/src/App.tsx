@@ -8,6 +8,7 @@ import { CreateAdModal } from './components/CreateAdModal';
 import './styles/main.css';
 
 import logoImg from './assets/logo-nlw-esports.svg';
+import axios from 'axios';
 
 interface Game {
   id: string;
@@ -23,11 +24,9 @@ function App() {
 
   //Conecção com a API
   useEffect(() => {
-    fetch('http://localhost:3333/games')
-      .then((res) => res.json())
-      .then((data) => {
-        setGames(data);
-      });
+    axios('http://localhost:3333/games').then((res) => {
+      setGames(res.data);
+    });
   }, []);
 
   return (
